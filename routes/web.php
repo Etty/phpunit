@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/tweets', 'TweetsController@index');
+Route::post('/tweets-search', 'TweetsController@search');
