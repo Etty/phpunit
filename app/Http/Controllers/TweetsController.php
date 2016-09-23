@@ -26,6 +26,7 @@ class TweetsController extends Controller
     {
         $tweetsSearch = new TweetsSearch();
         $tweets = $tweetsSearch->getTweets($request->q);
+        $request->flash();
         return view('tweets/tweets')->with('tweets', $tweets);
     }
 }
