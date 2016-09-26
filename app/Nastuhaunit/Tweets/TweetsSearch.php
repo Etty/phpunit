@@ -2,6 +2,7 @@
 namespace App\Nastuhaunit\Tweets;
 
 use \Abraham\TwitterOAuth\TwitterOAuth;
+use App\Nastuhaunit\Tweets\TweetsFetch;
 
 /**
  * Class TweetsSearch
@@ -10,15 +11,11 @@ use \Abraham\TwitterOAuth\TwitterOAuth;
 class TweetsSearch
 {
     /**
-     * @param $query
+     * @param $request
      * @return array|object
      */
-    public function getTweets($query)
+    public function getTweets($request)
     {
-        $twitter = new TwitterOAuth(\Config::get('services.twitter.consumer_key'),
-            \Config::get('services.twitter.consumer_secret'),
-            \Config::get('services.twitter.access_token'),
-            \Config::get('services.twitter.access_token_secret'));
-        return $twitter->get('search/tweets', array('q' => $query));
+        return $request->tweetsSearch();
     }
 }

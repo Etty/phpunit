@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Nastuhaunit\Tweets\TweetsFetch;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,9 +25,12 @@ class TweetsController extends Controller
      */
     public function search(Request $request)
     {
+        $tweetsFetch = new TweetsFetch($request->q);
+
         $tweetsSearch = new TweetsSearch();
-        $tweets = $tweetsSearch->getTweets($request->q);
+        $tweets = $tweetsSearch->getTweets($tweetsFetch);
         $request->flash();
+
         return view('tweets/tweets')->with('tweets', $tweets);
     }
 }
